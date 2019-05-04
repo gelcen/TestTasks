@@ -40,7 +40,7 @@ public class TestTasks {
         System.out.println("***********************************************");
         // Вывод результата для третьего задания 
         
-        Integer num = 2052019;
+        Integer num = 205020109;
         
         System.out.println(num);                      
         num = Task3(num);
@@ -139,7 +139,12 @@ public class TestTasks {
     {        
         String s = n.toString();
         
-        int index = s.lastIndexOf('0');
+        if (!s.contains("0")) 
+        {
+            return n;
+        }       
+        
+        int index = s.lastIndexOf('0');        
         
         char[] chars = s.toCharArray();
         chars[index] = '1';
