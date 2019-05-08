@@ -24,7 +24,8 @@ public class TestTasks {
     public static void main(String[] args) {
         
         // Вывод результата для первого задания
-        int a[] = {3, 0, 2, 11, 0, 4, 2, 0, 11, 2, 1, 9, 2}; 
+        //int a[] = {3, 0, 2, 11, 0, 4, 2, 0, 11, 2, 1, 9, 2};
+        int a[] = {2, 2, 3, 3, 4, 4, 5, 5};
         Task1(a);
         
         System.out.println("***********************************************");
@@ -45,6 +46,10 @@ public class TestTasks {
         System.out.println(num);                      
         num = Task3(num);
         System.out.println(num);                                      
+        
+        System.out.println("***********************************************");
+        
+        Task3_1("0100101");
     }
     
     //Решение первого задания
@@ -83,7 +88,7 @@ public class TestTasks {
     //Решение второго задания
     private static boolean Task2(String a)
     {
-        //Индексы закрывающей и открывающей скобок
+        //Индексы закрывающей и открывающей части
         //у одинаковых скобок должны быть одинаковы
         //в списках.
         
@@ -154,13 +159,48 @@ public class TestTasks {
         return Integer.parseInt(s);
     }
     
+    //Решение третьего задания для двоичных чисел
+    private static void Task3_1(String number)
+    {
+        //Цикл для валидации числа
+        for (int i=0; i < number.length(); i++)
+        {
+            if (number.charAt(i) == '0' ||
+                number.charAt(i) == '1')
+            {
+                continue;
+            }
+            else 
+            {
+                System.out.println("Неккоректная запись двоичного числа");
+                return;
+            }
+        }
+        
+        int a = Integer.parseInt(number, 2);
+        
+        System.out.println(Integer.toBinaryString(a));
+        
+        int b = a + 1;
+        
+        int result = b | a;
+        
+        System.out.println(Integer.toBinaryString(result));
+    }
+    
     //Решение четвёртого задания
     private static void Task4()
     {
-//        select id+1,l-id-1
-//        from
-//        (select id,(select top 1 id from test t2 where t2.id>t1.id order by id)l
-//        from test t1)
-//        where id<l-1
+        //Запрос работает для БД Oracle
+        /*
+        
+        select id+1,l-id-1
+        from
+        (select id,lead(id) over(order by id)l
+        from testTask)
+        where id<l-1;
+        
+        */
+
     }
 }
